@@ -221,38 +221,48 @@ function Webcamm() {
     }
 
     return (
-        <div className="webcam-container border-box-size">
-            <div class="container">
-                <div class="column">
-                    <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-                    <h2 className="button-text">
-                        Let's Communicate to the Art of Signing!
-                    </h2>
-                    <div className="button-container">
-                        <button onClick={toggleCamera}>
-                            {isCameraOn ? "Turn off Camera" : "Turn on Camera"}
-                        </button>
-                        {isCameraOn && !capturing && (
-                            <button onClick={startCapture}>Start Capture</button>
-                        )}
-                        {isCameraOn && capturing && (
-                            <button onClick={stopCapture}>Stop Capture</button>
-                        )}
+        <>
+
+            <div className="webcam-container border-box-size">
+                <div class="container">
+                    <div class="column">
+                        <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+                        <h2 className="button-text">
+                            Let's Communicate to the Art of Signing!
+                        </h2>
+                        <div className="button-container">
+                            <button onClick={toggleCamera}>
+                                {isCameraOn ? "Turn off Camera" : "Turn on Camera"}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        {/* <div key={currentIndex} className="image-container"> */}
+                        <img
+                            className="img"
+                            src={images[currentIndex].url}
+                            alt={images[currentIndex].name}
+                        />
+                        <p>{images[currentIndex].name}</p>
+                        {/* </div> */}
                     </div>
                 </div>
+            </div >
+            <div>
+                {
+                    isCameraOn && !capturing && (
+                        <button onClick={startCapture}>Start Capture</button>
+                    )
+                }
+                {
+                    isCameraOn && capturing && (
+                        <button onClick={stopCapture}>Stop Capture</button>
+                    )
+                }
 
-                <div class="column">
-                    {/* <div key={currentIndex} className="image-container"> */}
-                    <img
-                        className="img"
-                        src={images[currentIndex].url}
-                        alt={images[currentIndex].name}
-                    />
-                    <p>{images[currentIndex].name}</p>
-                    {/* </div> */}
-                </div>
             </div>
-        </div >
+        </>
     );
 }
 
