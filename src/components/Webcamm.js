@@ -224,20 +224,34 @@ function Webcamm() {
         <>
 
             <div className="webcam-container border-box-size">
-                <div class="container">
-                    <div class="column">
-                        <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+                <div className="container">
+                    <div className="column">
+
+                        <Webcam className="videocamera" audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
                         <h2 className="button-text">
                             Let's Communicate to the Art of Signing!
                         </h2>
                         <div className="button-container">
-                            <button onClick={toggleCamera}>
+                            <button className="turn" onClick={toggleCamera}>
                                 {isCameraOn ? "Turn off Camera" : "Turn on Camera"}
                             </button>
+
+                        </div>
+                        <div className="neechaywala">
+                            {
+                                isCameraOn && !capturing && (
+                                    <button onClick={startCapture}>Start Capture</button>
+                                )
+                            }
+                            {
+                                isCameraOn && capturing && (
+                                    <button onClick={stopCapture}>Stop Capture</button>
+                                )
+                            }
                         </div>
                     </div>
 
-                    <div class="column">
+                    <div className="column">
                         {/* <div key={currentIndex} className="image-container"> */}
                         <img
                             className="img"
@@ -249,19 +263,7 @@ function Webcamm() {
                     </div>
                 </div>
             </div >
-            <div>
-                {
-                    isCameraOn && !capturing && (
-                        <button onClick={startCapture}>Start Capture</button>
-                    )
-                }
-                {
-                    isCameraOn && capturing && (
-                        <button onClick={stopCapture}>Stop Capture</button>
-                    )
-                }
 
-            </div>
         </>
     );
 }
